@@ -45,3 +45,17 @@ button {
   color: #4ecca3;
   font-family: "Indie Flower", cursive;
 }
+
+input {
+  font-size: 1.75rem;
+  background-color: bisque;
+  color: #4ecca3;
+  font-family: "Indie Flower", cursive;
+}
+
+label {
+  margin-top: 2.5%;
+  font-size: 1.75rem;
+  color: #4ecca3;
+  font-family: "Indie Flower", cursive;
+}
