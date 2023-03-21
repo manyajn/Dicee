@@ -9,21 +9,24 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body onkeydown="keydown()" onkeyup="keyup()">
     <div class="container">
       <h1>Play Dice</h1>
+      <div id="app"></div>
 
-      <div class="dice">
-        <p>Player 1</p>
-        <img class="img1" src="images/dice6.png" />
-      </div>
-
-      <div class="dice">
-        <p>Player 2</p>
-        <img class="img2" src="images/dice6.png" />
+      <div>
+        <label for="players">No. of Players: </label>
+        <input
+          type="number"
+          id="players"
+          name="players"
+          min="2"
+          value="2"
+          onchange="setup()"
+        />
       </div>
       <div>
-        <button onclick="dice()">Play Dice</button>
+        <button onclick="play()">Play Dice</button>
       </div>
     </div>
 

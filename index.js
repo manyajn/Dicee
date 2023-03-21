@@ -1,21 +1,49 @@
-function dice() {
-  var randomNumber1 = Math.floor(Math.random() * 6) + 1; //1-6
-  var randomDiceImage = "dice" + randomNumber1 + ".png"; //dice1.png - dice6.png
-  var randomImageSource = "images/" + randomDiceImage; //images/dice1.png - images/dice6.png
-  var image1 = document.querySelectorAll("img")[0];
-  image1.setAttribute("src", randomImageSource);
-  var randomNumber2 = Math.floor(Math.random() * 6) + 1;
-  var randomDiceImage2 = "dice" + randomNumber2 + ".png";
-  var randomImageSource2 = "images/" + randomDiceImage2;
-  var image2 = document.querySelectorAll("img")[1];
-  image2.setAttribute("src", randomImageSource2);
-
-  if (randomNumber1 > randomNumber2) {
-    document.querySelector("h1").innerHTML = "🚩 Play 1 Wins!";
-  } else if (randomNumber2 > randomNumber1) {
-    document.querySelector("h1").innerHTML = "Player 2 Wins! 🚩";
-  } else {
-    document.querySelector("h1").innerHTML = "Draw!";
+function play() {
+  input = document.getElementById("players").value;
+  winner_id = 0;
+  winner_dice = 0;
+  html = ``;
+  for (i = 0; i < input; i++) {
+    var randomNumber = Math.floor(Math.random() * 6) + 1; //1-6
+    html += dice(i + 1, randomNumber);
+    if (randomNumber > winner_dice) {
+      winner_dice = randomNumber;
+      winner_id = i + 1;
+    }
   }
+  app.innerHTML = html;
+  document.querySelector("h1").innerHTML = `🚩 Player ${winner_id} Wins! 🚩`;
   document.querySelector("button").innerHTML = "Repeat";
 }
+
+function dice(id, dice = 6) {
+  return `
+    <div id="player${id}" class="dice">
+      <p>Player ${id}</p>
+      <img class="img1" src="images/dice${dice}.png" />
+    </div>
+  `;
+}
+
+function setup() {
+  input = document.getElementById("players").value;
+  html = ``;
+  for (i = 0; i < input; i++) {
+    html += dice(i + 1);
+  }
+  app.innerHTML = html;
+}
+
+function keydown() {
+  if (key) {
+    key = false;
+    play();
+  }
+}
+function keyup() {
+  key = true;
+}
+
+key = true;
+app = document.getElementById("app");
+setup();
